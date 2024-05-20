@@ -1,4 +1,0 @@
-FROM nginx:1.15.0-alpine
-
-RUN mkdir /var/www/html -p
-COPY ./app/index.html var/www/html/index.html

@@ -35,17 +35,12 @@ services:
       - node-network
 
   nginx:
-    build: 
-        context: ./
-        dockerfile: DockerfileNginx
-    image: cpatriota/nginx
+    image: nginx:latest
     container_name: nginx
     ports:
       - "8080:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    links:
-        - app
     depends_on:
       - app
     networks:

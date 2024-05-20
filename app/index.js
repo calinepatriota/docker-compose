@@ -17,8 +17,14 @@ connection.query(sqlTable)
 connection.query(sql)
 connection.end()
 
-app.get('/', (req,res)=> {
-    res.send('<h1>tetsandoo huhuh</h1>')
+
+
+app.get('/', (req,res) => {
+    res.send('<h1>Full Cycle Rocks!</h1>')
 })
 
-console.log('heree')
+app.listen(port, ()=> {
+    console.log('Rodando na porta ' + port)
+})
+
+console.log('heree');
