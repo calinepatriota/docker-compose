@@ -15,13 +15,20 @@ const sqlTable = `create table people(id int not null auto_increment, name varch
 const sql = `INSERT INTO people(name) values('TESTE AE!')`
 connection.query(sqlTable)
 connection.query(sql)
-connection.end()
 
-
-
-app.get('/', (req,res) => {
-    res.send('<h1>Full Cycle Rocks!</h1>')
-})
+app.get('/', (req, res) => {
+    connection.query('SELECT name FROM people', (error, results, fields) => {
+        if (error) {
+            console.error('Error fetching data:', error);
+            res.status(500).send('Error fetching data');
+            return;
+        }
+        
+        const searchId = results[0].name;
+        console.log("PEOPLE: " + searchId);
+        res.send('<h1>Full Cycle Rocks! Name: ' + searchId + '</h1>');
+    });
+});
 
 app.listen(port, ()=> {
     console.log('Rodando na porta ' + port)
